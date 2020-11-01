@@ -1,0 +1,15 @@
+Package: shinyspring
+Title: Build great fast shiny dahboards
+Version: 0.0.0.9000
+Authors@R: person('Shambhu', 'Sharma', email = 'shambhuone12@gmail.com', role = c('cre', 'aut'))
+Description: A template for building Shiny Apps with 80% of work done.
+License: MIT + file LICENSE
+Imports: 
+    config (>= 0.3),
+    golem (>= 0.3.0),
+    shiny (>= 1.5.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+URL: https://github.com/shambhu112/shinyspring
+BugReports: https://github.com/shambhu112/shinyspring/issues
