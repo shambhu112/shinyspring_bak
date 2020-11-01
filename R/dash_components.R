@@ -3,24 +3,21 @@
 #' The application User-Interface
 #'
 #' @import shiny
-#' @importFrom  shinydashboardPlus dashboardControlbar controlbarMenu controlbarItem
+#' @importFrom  shinydashboardPlus dashboardControlbar controlbarMenu controlbarItem skinSelector
 #' @noRd
 
 controlbar_create <- function(){
   shinydashboardPlus::dashboardControlbar(
-    skin = "dark",
+  #  skin = "dark",
+    skin = "light",
+    width = 180,
     shinydashboardPlus::controlbarMenu(
+      id = "control_bar_menu",
       controlbarItem(
         title = "Theme",
         icon = icon("desktop"),
         active = TRUE,
-        sliderInput(
-          inputId = "inputsidebar1",
-          label = "Number of observations:",
-          min = 0,
-          max = 1000,
-          value = 500
-        )
+        shinydashboardPlus::skinSelector()
       ),
       controlbarItem(
         icon = icon("paint-brush"),
@@ -47,10 +44,10 @@ controlbar_create <- function(){
 
 header_create <- function(){
   shinydashboardPlus:: dashboardHeader(
-    fixed = TRUE,
     title = tagList(
-      span(class = "logo", "SpringShiny"),
-      img(src = "http://hexb.in/hexagons/mongodb.png"))
+      span(class = "logo-lg", "SpringShiny"),
+      img(src = "https://image.flaticon.com/icons/svg/204/204074.svg")
+      )
 )
 }
 
@@ -63,6 +60,7 @@ header_create <- function(){
 menu_side_tabs <-  function(){
   shinydashboardPlus::dashboardSidebar(
     shinydashboard::sidebarMenu(
+      id = "tabs-menu",
       shinydashboard::menuItem("Tutorial", tabName = "tutorial", icon = icon("leanpub")),
       shinydashboard::menuItem("Data", tabName = "data", icon = icon("database") ,
                shinydashboard::menuSubItem("Upload" , tabName = "upload_data" , icon = icon("upload")),
@@ -71,7 +69,7 @@ menu_side_tabs <-  function(){
                ),
       shinydashboard::menuItem("Macro Analysis", tabName = "macro_analysis", icon = icon("archway")),
       shinydashboard::menuItem("Micro Analysis", tabName = "micro_analysis", icon = icon("atom")),
-      shinydashboard::menuItem("Credits", tabName = "credits", icon = icon("heart"))
+      shinydashboard::menuItem("Credits", tabName = "credits_tab", icon = icon("heart"))
     )
   )
 }
@@ -80,16 +78,42 @@ menu_side_tabs <-  function(){
 #' The application User-Interface
 #'
 #' @import shiny
+#' @import shinydashboard
 #' @noRd
-menu_body_tabs <- function(){
+body_tab_items <- function(){
   tabItems(
-    tabItem(
-      "tutorial",
+    tabItem("tutorial" ,tutorial_tab() ) ,
+    tabItem("upload_data" , upload_data_tab() ) ,
+    tabItem("credits_tab", credits_tab()),
+    tabItem("macro_analysis", "Macro Tab Content"),
+    tabItem("micro_analysis", "Micro Tab Content"),
+    tabItem("vis_data",  mod_esquisse_wrapper_ui("esquisse_wrapper_ui_1")),
+    tabItem("data", "Data Tab Content")
+  )
+}
 
-      # infoBoxes
-      fluidRow(
-        hr()
-      )
+#' The application User-Interface
+#'
+#' @import shiny
+#' @import shinydashboard
+#' @noRd
+
+tutorial_tab <- function(){
+  tabItem("tutorial", "Tutorial Tab Content")
+}
+
+
+upload_data_tab <- function(){
+    fluidRow(
+      hr() ,
+      h2("Upload Data")
     )
+}
+
+
+credits_tab <- function(){
+  fluidRow(
+    hr() ,
+    h2("CreditsTab")
   )
 }

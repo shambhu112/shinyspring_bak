@@ -3,7 +3,7 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import shiny
-#' @importFrom shinydashboard dashboardBody
+#' @importFrom shinydashboard dashboardBody tabItems
 #' @importFrom shinydashboardPlus dashboardPage
 #' @noRd
 app_ui <- function(request) {
@@ -13,18 +13,20 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage(
       shinydashboardPlus::dashboardPage(
-          options = list(sidebarExpandOnHover = TRUE),
+          options = list(sidebarExpandOnHover = FALSE),
           header = header_create(),
           sidebar = menu_side_tabs(),
           body = shinydashboard::dashboardBody(
-              hr()
-              #lapply(1:10, box, width = 12, title = "box")
+              setShadow(class = "dropdown-menu"),
+              setShadow(class = "box"),
+              # All tabs
+              body_tab_items()
           ),
           controlbar = controlbar_create(),
           title = "Build Fast Shiny Apps "
+        )
       )
     )
-  )
 }
 
 #' Add external Resources to the Application
