@@ -26,11 +26,14 @@ usethis::use_package( "esquisse" )
 usethis::use_package( "shinyjs" )
 usethis::use_package( "reactable" )
 usethis::use_package( "tidyr" )
+<<<<<<< HEAD
 usethis::use_package( "snakecase" )
 usethis::use_package( "stringr" )
 usethis::use_package( "readr" )
 usethis::use_package( "tibble" )
 
+=======
+>>>>>>> 7f20fa14e85ba560259fae3e2d669cbffc53b1a2
 
 
 
