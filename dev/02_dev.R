@@ -23,6 +23,10 @@ usethis::use_package( "shinyWidgets" )
 usethis::use_package( "shinydashboard" )
 usethis::use_package( "shinydashboardPlus" )
 usethis::use_package( "esquisse" )
+usethis::use_package( "shinyjs" )
+usethis::use_package( "reactable" )
+usethis::use_package( "tidyr" )
+
 
 
 ## Add modules ----

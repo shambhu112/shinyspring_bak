@@ -58,9 +58,9 @@ mod_esquisse_wrapper_ui <- function(id){
 mod_esquisse_wrapper_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-
-
+  })
 }
+
 
 ## To be copied in the UI
 # mod_esquisse_wrapper_ui("esquisse_wrapper_ui_1")
