@@ -83,7 +83,7 @@ menu_side_tabs <-  function(){
 body_tab_items <- function(){
   tabItems(
     tabItem("tutorial" ,tutorial_tab() ) ,
-    tabItem("upload_data" , upload_data_tab() ) ,
+    tabItem("upload_data" , mod_data_upload_ui("data_upload_ui_1") ) ,
     tabItem("credits_tab", credits_tab()),
     tabItem("macro_analysis", "Macro Tab Content"),
     tabItem("micro_analysis", "Micro Tab Content"),
@@ -102,13 +102,6 @@ tutorial_tab <- function(){
   tabItem("tutorial", "Tutorial Tab Content")
 }
 
-
-upload_data_tab <- function(){
-    fluidRow(
-      hr() ,
-      h2("Upload Data")
-    )
-}
 
 
 credits_tab <- function(){
