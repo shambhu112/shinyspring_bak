@@ -12,7 +12,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      shinydashboardPlus::dashboardPage(
+          shinydashboardPlus::dashboardPage(
           options = list(sidebarExpandOnHover = FALSE),
           header = header_create(),
           sidebar = menu_side_tabs(),
