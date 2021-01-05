@@ -99,7 +99,7 @@ mod_data_upload_server <- function(id , master){
       ds <- readr::read_csv(f$datapath )
 
       #Create Row : note nested dataset in tibble
-      row <- tibble(
+      row <- tibble::tibble(
         "srnum" = nrow(master_values$master_df) + 1,
         "names" = input$name_id,
         "filenames" = f$name,

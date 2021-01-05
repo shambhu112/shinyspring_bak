@@ -1,52 +1,17 @@
 
 
-#' The application User-Interface
-#'
-#' @import shiny
-#' @importFrom  shinydashboardPlus dashboardControlbar controlbarMenu controlbarItem skinSelector
-#' @noRd
-
-controlbar_create <- function(){
-  shinydashboardPlus::dashboardControlbar(
-  #  skin = "dark",
-    skin = "light",
-    width = 180,
-    shinydashboardPlus::controlbarMenu(
-      id = "control_bar_menu",
-      controlbarItem(
-        title = "Theme",
-        icon = icon("desktop"),
-        active = TRUE,
-        shinydashboardPlus::skinSelector()
-      ),
-      controlbarItem(
-        icon = icon("paint-brush"),
-        title = "Data",
-        numericInput(
-          inputId = "inputsidebar2",
-          label = "Observations:",
-          value = 10,
-          min = 1,
-          max = 100
-        )
-      )
-    )
-  )
-}
-
 
 #' The application User-Interface
 #'
 #' @import shiny
-#' @importFrom  shinydashboardPlus dashboardHeader
 #' @import shinyWidgets
 #' @noRd
 
 header_create <- function(){
-  shinydashboardPlus:: dashboardHeader(
+  shinydashboardPlus::dashboardHeader(
     title = tagList(
-      span(class = "logo-lg", "SpringShiny"),
-      img(src = "https://image.flaticon.com/icons/svg/204/204074.svg")
+      span(class = "logo-lg", "Shiny Spring"),
+      img(src = "https://www.flaticon.com/svg/static/icons/svg/892/892926.svg" , width = 30)
       )
 )
 }

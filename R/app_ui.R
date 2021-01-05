@@ -22,7 +22,8 @@ app_ui <- function(request) {
               # All tabs
               body_tab_items()
           ),
-          controlbar = controlbar_create(),
+          controlbar = shinydashboardPlus::dashboardControlbar(),
+          footer = shinydashboardPlus::dashboardFooter(right = "Shiny Spring" , left = "Build Fast Shiny Apps"),
           title = "Build Fast Shiny Apps "
         )
       )
