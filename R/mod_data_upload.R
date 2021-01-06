@@ -36,6 +36,7 @@ mod_data_upload_ui <- function(id){
       column(
         8,
         mainPanel(
+          titlePanel("Datasets Loaded"),
           reactable::reactableOutput(ns("table"))
         )
       )
@@ -53,11 +54,10 @@ mod_data_upload_ui <- function(id){
 #' data_upload Server Functions
 #' @import reactable
 #' @noRd
-mod_data_upload_server <- function(id , master){
+mod_data_upload_server <- function(id ){
   moduleServer(id, function(input, output, session ){
     ns <- session$ns
 
-    master_values <- reactiveValues(master_df = master)
 
     fileInfo <- reactive(input$MyFiles)
 
@@ -85,6 +85,9 @@ mod_data_upload_server <- function(id , master){
 
     # Call Onclick of add_btn
     onclick("add_btn", {
+      mdf <- reactive({master$rvals$mdata})
+      cli_alert_info(" Before Add button process mdf size {nrow(mdf())}")
+
       f <- fileInfo()
 
       # TODO - repalce this with debug
@@ -97,21 +100,19 @@ mod_data_upload_server <- function(id , master){
       # TODO put some checks at file load time
       # TODO remove warnings
       ds <- readr::read_csv(f$datapath )
-
       #Create Row : note nested dataset in tibble
-      row <- tibble::tibble(
-        "srnum" = nrow(master_values$master_df) + 1,
-        "names" = input$name_id,
-        "filenames" = f$name,
-        "dataset" = nest(ds)
+      row <- create_row(
+        srnum = nrow(mdf()) + 1 ,
+        filename = f$name ,
+        ds_name = input$name_id ,
+        ds = ds
       )
-
       #Update the DataFrame with new row
+      new_df <- reactive({rbind(mdf() , row)})
+      cli_alert_info("New DF rows {nrow(new_df())}")
+      master$rvals$mdata <- new_df()
+      cli_alert_info(" Master dataset rows {nrow(master$rvals$mdata)} names = {master$rvals$mdata$dataset_names} " )
 
-      master_values$master_df <- rbind(master_values$master_df, row)
-      #master_df <- values$df_data
-      cli::cli_alert_info(" masterdf row {nrow(master_values$master_df )}")
-      master_data <- master_values$master_df
       #Updata UI
       updateTextInput(session = session, inputId = "name_id", value = "")
       shinyjs::disable("add_btn")
@@ -120,12 +121,12 @@ mod_data_upload_server <- function(id , master){
 
     # Render Reactable table
     output$table <- reactable::renderReactable({
-      dataset_tbl(input, output, session, master_values$master_df)
+      dataset_tbl(input, output, session, master$rvals$mdata )
     })
 
     # Remove button selection logic
     observe({
-      print(selected())
+     # print(selected())
       if(is.numeric(selected())){
         shinyjs::enable("remove_btn")
         shinyjs::enable("preview_btn")
@@ -137,33 +138,47 @@ mod_data_upload_server <- function(id , master){
 
     onclick("remove_btn", {
       index <- selected()
-      master_values$master_df <- master_values$master_df[-c(index),]
-      cli::cli_alert_info(" remove clicked new rows = {nrow(master_values$master_df )}")
-      if(nrow(master_values$master_df > 0))
-          master_values$master_df$srnum <- seq(1:nrow(master_values$master_df))
-
-      output$preview_table <- NULL
-
-    #  master_df <- values$df_data
+    #  browser()
+      master$rvals$mdata <- master$rvals$mdata[-c(index),]
+      cli::cli_alert_info(" remove clicked new rows = {nrow(master$rvals$mdata)}")
+      if(nrow(master$rvals$mdata) > 0)
+        master$rvals$mdata$srnum <- seq(1:nrow(master$rvals$mdata))
+        output$preview_table <- NULL
     })
 
     onclick("preview_btn", {
       index <- selected()
-    #  browser()
-      ds <- tidyr::unnest(master_values$master_df[index,]$dataset)
+   #   ds <- tidyr::unnest(master$rvals$mdata[index,]$dataset , cols = master$rvals$mdata[index,]$snakenames)
+      ds <- master$rvals$mdata$datasets[index,]$data[[1]]
+      colnames(ds) <- master$rvals$mdata$snake_cols[index]$sname
       cli::cli_alert_info(" ds for index = {index} with rows = {nrow(ds)}")
-      #print(head(ds))
+ #     browser()
       output$preview_table <- reactable::renderReactable({
               reactable::reactable(head(ds))
        })
+#      browser()
+
     })
-
-
-    return(
-      reactive(master_values$master_data)
-    )
 })
 }
+
+
+#' creates the standardized row for app_master mdata
+#' @import tibble
+#' @export
+create_row <- function(srnum , filename , ds_name , ds ){
+  colnames(ds) <- make.names(snakecase::to_any_case(colnames(ds)))
+  row <- tibble::tibble(
+    "srnum" = srnum,
+    "filenames" = filename,
+    "dataset_names" = ds_name,
+    "datasets" = nest(ds , data = everything()) ,
+    "original_cols" = list(cname = colnames(ds)),
+    "snake_cols" = list(sname = make.names(snakecase::to_any_case(colnames(ds))))
+  )
+  row
+}
+
 
 
 # Function create the reactable table that shows the datasets
@@ -179,35 +194,13 @@ dataset_tbl <- function(input, output, session, tbl_df) {
             ),
             columns = list(
               srnum = colDef(name = "Num"),
-              names = colDef(name = "Dataset Names"),
+              dataset_names = colDef(name = "Dataset Names"),
               filenames = colDef(name = "Source Filename"),
-              dataset = colDef(show = FALSE)
+              datasets = colDef(show = FALSE),
+              original_cols = colDef(show = FALSE) ,
+              snake_cols = colDef(show = FALSE)
             )
   )
 }
 
-
-## To be copied in the UI
-# mod_data_upload_ui("data_upload_ui_1")
-
-## To be copied in the server
-# mod_data_upload_server("data_upload_ui_1")
-
-
-#library(shiny)
-#library(reactable)
-#library(tidyr)
-#library(shinyjs)
-#library(cli)
-#library(stringr)
-#source("spring_util.R")
-
-
-#ui <- fluidPage(
-#  mod_data_upload_ui("data_upload_ui_1")
-#)
-#server <- function(input, output, session) {
-#  mod_data_upload_server("data_upload_ui_1")
-#}
-#shinyApp(ui, server)
 

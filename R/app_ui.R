@@ -11,7 +11,7 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
+    shiny::fluidPage(
           shinydashboardPlus::dashboardPage(
           options = list(sidebarExpandOnHover = FALSE),
           header = header_create(),

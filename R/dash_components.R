@@ -1,7 +1,7 @@
 
 
 
-#' The application User-Interface
+#' The create the header
 #'
 #' @import shiny
 #' @import shinyWidgets
@@ -16,7 +16,7 @@ header_create <- function(){
 )
 }
 
-#' The application User-Interface
+#' create the menu
 #'
 #' @import shiny
 #' @importFrom shinydashboard dashboardSidebar
@@ -40,7 +40,7 @@ menu_side_tabs <-  function(){
 }
 
 
-#' The application User-Interface
+#' Create the body tab items
 #'
 #' @import shiny
 #' @import shinydashboard

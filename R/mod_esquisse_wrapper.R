@@ -46,16 +46,15 @@ mod_esquisse_wrapper_ui <- function(id , filter = NULL){
 #' esquisse_wrapper Server Functions
 #'
 #' @noRd
-mod_esquisse_wrapper_server <- function(id , master){
+mod_esquisse_wrapper_server <- function(id ){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    master_values <- reactiveValues(master_df = master)
 
     output$radios <- renderUI({
 
-      options <- master_values$master_df$names
+      d_choices <-master$dataset_names()
       # The options are dynamically generated on the server
-      radioButtons(ns('radio_select'), 'Select Dataset to visualize', options, selected = character(0) ,
+      radioButtons(ns('radio_select'), 'Select Dataset to visualize', d_choices, selected = character(0) ,
                    inline = TRUE)
     })
 
@@ -63,11 +62,12 @@ mod_esquisse_wrapper_server <- function(id , master){
     observeEvent(input$radio_select, {
       cli::cli_alert_info("Radio selected ")
       nm <- input$radio_select
-      t <- filter(master_values$master_df , names == nm)
-      the_t <- unnest(as_tibble(t$dataset) , cols = c(data))
-      data_r <- reactiveValues(data = the_t, name = nm)
+      df <- master$data_by_name(nm)
+      data_r <- reactiveValues(data = df, name = nm)
       cli::cli_alert_info("Befoer Call Module {nm} ")
-      callModule(module = esquisserServer, id = "ns(esquisse)", data = data_r)
+     # browser()
+      callModule(module = esquisserServer, id = "esquisse", data = data_r)
+    #  browser()
     })
 
   })
