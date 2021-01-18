@@ -1,12 +1,42 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# shinyspring
+# sweetmods
 
 <!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/sweetmods)](https://CRAN.R-project.org/package=sweetmods)
 <!-- badges: end -->
 
-The goal of shinyspring is to …
+The goal of sweetmods is to …
+
+## Installation
+
+You can install the released version of sweetmods from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("sweetmods")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("shambhu112/sweetmods")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(sweetmods)
+## basic example code
+```
 
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
@@ -30,7 +60,7 @@ example workflow can be found here:
 
 You can also embed plots, for example:
 
-![](README_files/figure-gfm/pressure-1.png)<!-- -->
+<img src="man/figures/README-pressure-1.png" width="100%" />
 
 In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub.
+files, so they display on GitHub and CRAN.

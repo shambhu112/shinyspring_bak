@@ -1,21 +1,18 @@
 Package: shinyspring
-Title: build fast shiny apps
-Version: 0.0.0.9001
+Title: Build Fast Shiny Applications
+Version: 0.0.1
 Authors@R: person('Niraj', 'Juneja', email = 'shambhuone12@gmail.com', role = c('cre', 'aut'))
-Description: A framework to build fast, robust , production ready and complete shinay apps.Provides accelerators to build
-        dashboards based on shinydashbaordplus.
+Description: A fast ai apps development framework for shiny. 
 License: MIT + file LICENSE
-Imports:
+Imports: 
     config (>= 0.3),
-    cli,
     dplyr,
-    tibble,
-    shiny ,
-    tidyr
-Suggests:
+    shiny 
+Suggests: 
     testthat (>= 3.0.0),
     here ,
-    stringr
+    stringr ,
+    esquisse
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
