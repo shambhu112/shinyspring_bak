@@ -3,14 +3,14 @@ Title: Shiny Spring Project Template
 OpenFiles: config.yml
 Icon: shinyspring.png
 
-Parameter: select
+Parameter: dashboard_template
 Widget: SelectInput
 Label: Dashboard Template
-Fields: shinyDashboardPlus, bs4Dash , argonDash
-Default: shinyDashboardPlus
+Fields: shiny_dashboard_plus, bs4_dash , argon_dash
+Default: shiny_dashboard_plus
 Position: left
 
-Parameter: text
+Parameter: app_name
 Widget: TextInput
 Label: Application Name
 Default: my_ai_app
