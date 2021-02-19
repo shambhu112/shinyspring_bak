@@ -2,7 +2,10 @@ Package: shinyspring
 Title: Build Fast Shiny Applications
 Version: 0.0.1
 Authors@R: person('Niraj', 'Juneja', email = 'shambhuone12@gmail.com', role = c('cre', 'aut'))
-Description: A fast ai apps development framework for shiny. 
+Description: A fast shiny apps development framework with templates based on shinydashboardPlus ,
+            admin LTE based bs4Dash.In collaboration with the package sweetmods, shinyframework enables
+            you to focus on core app development only.A lot of modules typically needed for a robust application 
+            are available to shinyframework in a plug and play manner.
 License: MIT + file LICENSE
 Config/reticulate:
     list(
@@ -15,7 +18,8 @@ Imports:
     dplyr,
     reticulate,
     readr ,
-    stringr
+    stringr , 
+    cli
 Suggests: 
     testthat (>= 3.0.0),
     here 

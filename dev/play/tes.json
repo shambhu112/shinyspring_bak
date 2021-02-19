@@ -1,0 +1,20 @@
+{
+  dashboard_template: $dashboard_template ,
+  app_name: $app_name ,
+  title: $app_name  ,
+  footer_left: Built on Shiny Spring ,
+  footer_right: version 1.0  #app_name ,
+  sidebar_expand_onhover: 'FALSE' ,
+  code_gen_location: '.' ,
+  preload_dataset: 'TRUE' ,
+
+  "users": [
+  modules :
+  "modules": {
+    "streetAddress": "126",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "394221"
+  },
+  "phoneNumbers": [{ "type": "home", "number": "7383627627" }]
+}

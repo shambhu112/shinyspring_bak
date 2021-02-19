@@ -1,4 +1,12 @@
 
+# toast options
+toastOpts <- list(
+  autohide = TRUE,
+  icon = "fas fa-home",
+  close = FALSE,
+  position = "bottomRight"
+)
+
 
 header_create <- function(){
   shinydashboardPlus::dashboardHeader(
