@@ -6,7 +6,7 @@ Icon: shinyspring.png
 Parameter: dashboard_template
 Widget: SelectInput
 Label: Dashboard Template
-Fields: shiny_dashboard_plus, bs4_dash , argon_dash
+Fields: shiny_dashboard_plus, bs4_dash , argon_dash , semantic
 Default: shiny_dashboard_plus
 Position: left
 

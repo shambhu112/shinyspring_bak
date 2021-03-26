@@ -4,20 +4,35 @@ library(readr)
 
 
 reticulate::py_config()
+reticulate::py_install("pandas")
+reticulate::py_install("cheetah3")
 
+# Test bs4 dash
 
-params <- config::get(file = "inst/cheetah/config.yml" , use_parent = TRUE)
+Sys.setenv(R_CONFIG_ACTIVE = "dev")
+params <- config::get(file = "inst/cheetah/bs4dash/bs4_config.yml" , use_parent = TRUE )
+
 
 os <- reticulate::import("os")
 cli::cli_alert_info("Current working directory {os$getcwd()}")
 
 cheetah <- reticulate::import(module = "Cheetah.Template")
 
-template <- readr::read_file(file= "inst/cheetah/shinydashboardplus_app.txt")
-
-cheetah$Template(template , searchList = dict(params))
+template <- readr::read_file(file= "dev/sample_template.c3")
 
 
+template <- readr::read_file(file= "inst/cheetah/bs4dash/bs4dash_template.c3")
+
+t <- stringr::str_replace_all(template , pattern = "[[$]]" , replacement = "&&%&&")
+
+t <- stringr::str_replace_all(t , pattern = "@@" , replacement = "$")
+
+
+tc <- cheetah$Template(t , searchList = dict(params))
+
+tc <- stringr::str_replace_all(tc , pattern = "&&%&&" , replacement = "$")
+
+write_file(tc , "bs4app.R")
 
 name_value_pair <- function(name , value){
    value <- stringr::str_replace(string = value , pattern = "\"" , replacement = "\'")
