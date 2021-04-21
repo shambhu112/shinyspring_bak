@@ -1,17 +1,25 @@
 Binding: new_project
 Title: Shiny Spring Project Template
-OpenFiles: config.yml
+OpenFiles: user_script.R
 Icon: shinyspring.png
 
 Parameter: dashboard_template
 Widget: SelectInput
 Label: Dashboard Template
 Fields: shiny_dashboard_plus, bs4_dash , argon_dash , semantic
-Default: shiny_dashboard_plus
+Default: bs4_dash
 Position: left
 
-Parameter: app_name
+Parameter: app_type
+Widget: SelectInout
+Label: Application Type
+Fields: test_harness, minimal , full
+Default: minimal
+Position: right
+
+
+Parameter: config_file
 Widget: TextInput
-Label: Application Name
-Default: my_ai_app
+Label: Config File
+Default: config.yml
 Position: right

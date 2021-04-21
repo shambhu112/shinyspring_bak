@@ -1,11 +1,13 @@
-# This Shiny App created with Shinyspring - http://www.shinyspring.dev
-# template bs4Dash
+## This Shiny App created with Shinyspring - http://www.shinyspring.dev
+## template bs4Dash
 
 library(shiny)
 library(bs4Dash)
 library(thematic)
 library(waiter)
 library(sweetmods)
+##detach("package:semantic.dashboard", unload = TRUE)
+##detach("package:shiny.semantic", unload = TRUE)
 
 thematic_shiny()
 
@@ -13,12 +15,12 @@ params <- config::get(file = "config.yml") # @@ sweetmod_config
 controller <- sweetmods::app_master$new(params)
 
 
-# Define UI for application that draws a histogram
+## Define UI for application that draws a histogram
 ui <- bs4Dash::dashboardPage(
-  #   preloader = list(
-  #       waiter = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
-  #       duration = 0
-  #   ),
+  ##   preloader = list(
+  ##       waiter = list(html = tagList(spin_1(), "Loading ..."), color = "##343a40"),
+  ##       duration = 0
+  ##   ),
 
   dark = TRUE,
   help = FALSE,
@@ -26,13 +28,13 @@ ui <- bs4Dash::dashboardPage(
   scrollToTop = TRUE,
   header = dashboardHeader(
     title = dashboardBrand(
-      title = "ShinySpring", # @@app_title
+      title = "ShinySpring", ## @@app_title
       color = "primary",
-      href = "http://www.shinyspring.dev", # @@header_href
-      image = "https://lh5.googleusercontent.com/1Al9EArT3_oSmP5pvnJpi57qIq3anpIjnrdh5MykFGZKsVqx8OmhGO1pBvaSsc6yHzGy_WQ0-nwL-P626NNr_d8=w16383", #@@header_image
+      href = "http://www.shinyspring.dev", ## @@header_href
+      image = "https://storage.cloud.google.com/shiny-pics/spring_logo.png", ##@@header_image
       opacity = 0.8
     ),
-    fixed = TRUE, # @@header_fixed
+    fixed = TRUE, ## @@header_fixed
 
   rightUi = tagList(
       dropdownMenu(
@@ -50,31 +52,20 @@ ui <- bs4Dash::dashboardPage(
       userOutput("user")
     ),
     leftUi = tagList(
-      # Close dropdownMenu
+      ## Close dropdownMenu
       tags$li(class = "dropdown",
-              tags$h3("Application Name") # $$app_title_h3
+              tags$h3("Application Name") ## $$app_title_h3
       )
-    ) # close left UI
+    ) ## close left UI
   ),
   sidebar = dashboardSidebar(
     fixed = TRUE,
     skin = "light",
     status = "primary",
     id = "sidebar",
-    customArea = fluidRow(
-      actionButton(
-        inputId = "myAppButton",
-        label = NULL,
-        icon = icon("users"),
-        width = NULL,
-        status = "primary",
-        style = "margin: auto",
-        dashboardBadge(textOutput("btnVal"), color = "danger")
-      )
-    ),
     sidebarUserPanel(
-      image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
-      name = "Welcome"
+      image = "https://image.flaticon.com/icons/svg/1149/1149168.svg", ## @@welcome_image
+      name = "Welcome" ## @@welcome_message
     ),
     sidebarMenu(
       id = "current_tab",
@@ -82,8 +73,10 @@ ui <- bs4Dash::dashboardPage(
       compact = FALSE,
       childIndent = TRUE,
       sidebarHeader("Banks"),
+      ## for loop here for cheetah3
+
       menuItem(
-        "Branch Network",
+        "MenuItem 1",
         tabName = "institutions_tab",
         icon = icon("university")
       ),
@@ -94,21 +87,21 @@ ui <- bs4Dash::dashboardPage(
       )
 
     )
-  ), # Close of sidebar
+  ), ## Close of sidebar
   body = dashboardBody(
     tabItems(
+    ## for loop here for cheetah3
       tabItem(tabName = "learning_tab", "Learning"),
-      #         tabItem(tabName = "institutions_tab", branch_network_ui("b_network_ui" , control)),
       tabItem(tabName = "credits_tab", "Credits")
 
     )
-  ) #close of body
+  ) ## close of body
 )
 
-# Define server logic required to draw a histogram
+## Define server logic required to draw a histogram
 server <- function(input, output , session) {
 
 }
 
-# Run the application
+## Run the application
 shinyApp(ui = ui, server = server)

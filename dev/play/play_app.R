@@ -1,5 +1,3 @@
-## This Shiny App created with Shinyspring - http://www.shinyspring.dev
-## template bs4Dash
 
 library(shiny)
 library(bs4Dash)
@@ -9,16 +7,11 @@ library(sweetmods)
 
 thematic_shiny()
 
-params <- config::get(file = "@@sweetmod_config") ## @@sweetmod_config
+params <- config::get(file = "config.yml") 
 controller <- sweetmods::app_master$new(params)
 
 
-## Define UI for application that draws a histogram
 ui <- bs4Dash::dashboardPage(
-  ##   preloader = list(
-  ##       waiter = list(html = tagList(spin_1(), "Loading ..."), color = "##343a40"),
-  ##       duration = 0
-  ##   ),
 
   dark = TRUE,
   help = FALSE,
@@ -26,13 +19,13 @@ ui <- bs4Dash::dashboardPage(
   scrollToTop = TRUE,
   header = dashboardHeader(
     title = dashboardBrand(
-      title = "@@app_title", ## @@app_title
+      title = "Base Shiny App", 
       color = "primary",
-      href = "@@header_href", ## @@header_href
-      image = "@@header_image", ## @@header_image
+      href = "http://www.shinyspring.devdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAWElEQVR42mNgGPTAxsZmJsVqQApgmGw1yApwKcQiT7phRBuCzzCSDSHGMKINIeDNmWQlA2IigKJwIssQkHdINgxfmBBtGDEBS3KCxBc7pMQgMYE5c/AXPwAwSX4lV3pTWwAAAABJRU5ErkJggg==", 
+      image = "https://lh5.googleusercontent.com/1Al9EArT3_oSmP5pvnJpi57qIq3anpIjnrdh5MykFGZKsVqx8OmhGO1pBvaSsc6yHzGy_WQ0-nwL-P626NNr_d8=w16383", 
       opacity = 0.8
     ),
-    fixed = @@header_fixed, ## @@header_fixed
+    fixed = TRUE, 
     rightUi = tagList(
       dropdownMenu(
         badgeStatus = "info",
@@ -49,11 +42,10 @@ ui <- bs4Dash::dashboardPage(
       userOutput("user")
     ),
     leftUi = tagList(
-      ## Close dropdownMenu
       tags$li(class = "dropdown",
-              tags$h3("@@app_title_h3") # @@app_title_h3
+              tags$h3("Base Shiny App") # Base Shiny App
       )
-    ) ## close left UI
+    ) 
   ),
   sidebar = dashboardSidebar(
     fixed = TRUE,
@@ -93,21 +85,19 @@ ui <- bs4Dash::dashboardPage(
       )
 
     )
-  ), ## Close of sidebar
+  ), 
   body = dashboardBody(
     tabItems(
       tabItem(tabName = "learning_tab", "Learning"),
-      ##         tabItem(tabName = "institutions_tab", branch_network_ui("b_network_ui" , control)),
       tabItem(tabName = "credits_tab", "Credits")
 
     )
-  ) ##close of body
+  ) 
 )
 
-## Define server logic required to draw a histogram
 server <- function(input, output , session) {
 
 }
 
-## Run the application
 shinyApp(ui = ui, server = server)
+

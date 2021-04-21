@@ -4,7 +4,7 @@
 \alias{load_config_template}
 \title{Load the config.yml template available in inst/cheetah}
 \usage{
-load_config_template()
+load_config_template(template_engine = "mustache", config_file = "config.yml")
 }
 \value{
 the txt file for config.yml

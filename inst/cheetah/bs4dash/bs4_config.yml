@@ -17,9 +17,9 @@ default:
   code_gen_location: '.'
   preload_dataset: TRUE
   sweetmod_config: config.yml
-  header_href: http://www.shinyspring.dev
+  header_href: http://www.shinyspring.devdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAWElEQVR42mNgGPTAxsZmJsVqQApgmGw1yApwKcQiT7phRBuCzzCSDSHGMKINIeDNmWQlA2IigKJwIssQkHdINgxfmBBtGDEBS3KCxBc7pMQgMYE5c/AXPwAwSX4lV3pTWwAAAABJRU5ErkJggg==
   header_image: https://lh5.googleusercontent.com/1Al9EArT3_oSmP5pvnJpi57qIq3anpIjnrdh5MykFGZKsVqx8OmhGO1pBvaSsc6yHzGy_WQ0-nwL-P626NNr_d8=w16383
-  header_fixed: TRUE
+  header_fixed: 'TRUE'
 
 
 # app_master from Sweet Mods base configuration
@@ -38,4 +38,4 @@ default:
 production:
   code_gen_location: R # the folder under project folder. i.e R/app.R
 dev:
-  code_gen_location: dev
+  code_gen_location: dev/play
