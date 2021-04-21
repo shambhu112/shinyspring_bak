@@ -6,7 +6,7 @@
 #' @return TRUE
 #' @export
 
-create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "basic" , config_file = "config.yml"){
+create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml"){
   dots <- list(dashboard_template = dashboard_template , app_type = app_type , config_file = config_file)
   yml_template_file <- create_mst_filename(dots)
   yml_template <- readr::read_file(system.file("rstudio/templates/project/" , yml_template_file , package = "shinyspring"))
@@ -17,8 +17,11 @@ create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "bas
   user_script <- whisker.render(user_file_template , dots)
 
   writeLines(text, con = file.path(config_file))
+  cli::cli_alert_success("Created config at file : {config_file} ")
+
   writeLines(user_script, con = file.path("user_script.R"))
-  TRUE
+  cli::cli_alert_success("Created start script : user_script.R ")
+  cli::cli_h2("Open user_script.R to start your shiny spring journey")
 }
 
 # to be used in RStudio "new project" GUI
@@ -53,8 +56,10 @@ create_mst_filename <- function(dots){
   )
 
   a_type <- dplyr::case_when(
-    x == "basic" ~ "basic" ,
-    TRUE ~ "basic"
+    x == "minimal" ~ "minimal" ,
+    x == "full" ~ "full" ,
+    x == "test_harness" ~ "harness",
+    TRUE ~ "minimal"
   )
 
   str <- paste(t_name , a_type , ".mst" , sep = "")
