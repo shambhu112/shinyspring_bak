@@ -6,12 +6,12 @@ Icon: shinyspring.png
 Parameter: dashboard_template
 Widget: SelectInput
 Label: Dashboard Template
-Fields: shiny_dashboard_plus, bs4_dash , argon_dash , semantic
+Fields: shiny_dashboard_plus, bs4_dash , argon_dash
 Default: bs4_dash
 Position: left
 
 Parameter: app_type
-Widget: SelectInout
+Widget: SelectInput
 Label: Application Type
 Fields: test_harness, minimal , full
 Default: minimal

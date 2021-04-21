@@ -7,19 +7,13 @@ Description: A fast shiny apps development framework with templates based on shi
             you to focus on core app development only.A lot of modules typically needed for a robust application 
             are available to shinyframework in a plug and play manner.
 License: MIT + file LICENSE
-Config/reticulate:
-    list(
-        packages = list(
-            list(package = "Cheetah3" , pip = TRUE)
-        )
-    )
 Imports: 
     config (>= 0.3),
     dplyr,
-    reticulate,
     readr ,
     stringr , 
-    cli
+    cli ,
+    whisker
 Suggests: 
     testthat (>= 3.0.0),
     here 
