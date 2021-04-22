@@ -20,7 +20,7 @@ get_params <- function(env = "default" , path = "config.yml"){
 create_app_r <- function(params , template_file ,  target_file = "app.R"){
   template <- readr::read_file(file= template_file)
 
-  text <- whisker.render(template, params)
+  text <- whisker::whisker.render(template, params)
   if(debug) cli::cli_verbatim(text)
 
   app_r <- paste(params$code_gen_location , target_file , sep = "/") # TODO - provide option for app.R

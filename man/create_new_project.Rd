@@ -6,7 +6,7 @@
 \usage{
 create_new_project(
   dashboard_template = "bs4_dash",
-  app_type = "basic",
+  app_type = "minimal",
   config_file = "config.yml"
 )
 }
