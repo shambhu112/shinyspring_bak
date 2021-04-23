@@ -17,7 +17,10 @@ get_params <- function(env = "default" , path = "config.yml"){
 #' @param env (optional) defauls to "default". Switch this to production , dev , test as need be
 #' @export
 
-create_app_r <- function(params , template_file ,  target_file = "app.R"){
+create_app_r <- function(params , template_file = NULL,  target_file = "app.R"){
+  if(is.null(template_file))
+        template_file <- params$template_file
+
   template <- readr::read_file(file= template_file)
 
   text <- whisker::whisker.render(template, params)

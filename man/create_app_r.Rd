@@ -4,7 +4,7 @@
 \alias{create_app_r}
 \title{Creates the app.R using the templates defined in inst/cheetah/*}
 \usage{
-create_app_r(params, template_file, target_file = "app.R")
+create_app_r(params, template_file = NULL, target_file = "app.R")
 }
 \arguments{
 \item{env}{(optional) defauls to "default". Switch this to production , dev , test as need be}
