@@ -1,7 +1,8 @@
-# bs4_basic_mst
+# bs4_minimal_mst
 
 default:
   dashboard_template: {{dashboard_template}}
+  template_file: !expr system.file("bs4/bs4_minimal.mst" , package = "shinyspring")
   app_title: Sample App
   sweetmod_config : {{config_file}}
 

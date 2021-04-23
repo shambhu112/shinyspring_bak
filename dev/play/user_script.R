@@ -6,6 +6,8 @@ file.edit('config.yml')
 ## Step 2 : Create app.R for your application
 params <- config::get(file = "config.yml") # load params
 shinyspring::create_app_r(params = params )
+file.edit('app.R') # Adjust this to your app.R if you change the file
+
 
 ## Step 3 : Launch the App
 shiny::runApp()

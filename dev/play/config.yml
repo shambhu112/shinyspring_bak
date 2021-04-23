@@ -1,7 +1,8 @@
-# bs4_basic_mst
+# bs4_minimal_mst
 
 default:
   dashboard_template: bs4_dash
+  template_file: !expr system.file("bs4/bs4_minimal.mst" , package = "shinyspring")
   app_title: Sample App
   sweetmod_config : config.yml
 
@@ -18,15 +19,13 @@ default:
 
 # Menus
   menus: [
-    { title: Banks , name: bank_mod , icon: university , comma: true ,
+    { title: Introduction , name: intro_mod , icon: university , comma: true ,
       ui_function: demo_ui , server_function: demo_server},
-    { title: Branches , name: branch_mod , icon: university , comma: true ,
+    { title: Core Analysis , name: core_analysis , icon: university , comma: true ,
       ui_function: demo_ui , server_function: demo_server},
     { title: Data Exploration , name: esquiee_mod , icon: university , comma: false ,
       ui_function: demo_ui , server_function: demo_server}
   ]
-
-
 
 
 dev:
