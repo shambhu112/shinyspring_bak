@@ -1,7 +1,4 @@
 library(shinyspring)
-
-
-
 test_that("template bs4_minimal.mst", {
   dots <- list(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml")
 
