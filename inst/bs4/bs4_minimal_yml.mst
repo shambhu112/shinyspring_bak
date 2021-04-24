@@ -4,8 +4,6 @@
 #     1) this yml maps to template here https://github.com/shambhu112/shinyspring/blob/main/inst/bs4/bs4_minimal.mst
 #     2) For advanced users you cna modify template above use it to create your shiny app
 
-
-
  default:
 ## DO NOT Change the following
   dashboard_template: {{dashboard_template}}
@@ -44,7 +42,7 @@
   ]
 
 # Sweetmods configurations
- preload_dataset: FALSE
+ preload_dataset: false
 
 
  dev:
