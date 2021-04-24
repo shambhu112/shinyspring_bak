@@ -1,9 +1,8 @@
-#' CLI option to create a new Shiny Spring Project
+#' CLI option to create a new Shiny Spring Project based on predefined templates in shinyspring
 #'
 #' @param dashboard_template (optional) defaults to "bs4_dash". Options are shiny_dashboard_plus , argon_dash
 #' @param app_type (optional) default to "basic". Options are
 #' @param config_file (optional)
-#' @return TRUE
 #' @export
 
 create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml"){
@@ -19,6 +18,31 @@ create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "min
   cli::cli_h2("Open user_script.R to start your shiny spring journey")
 
 }
+
+
+#' Creates the app.R using the templates defined in inst/cheetah/*
+#'
+#' Based on the configuration defined in config.yml the app.R code is created
+#' @param params the params for creating app.R
+#' @param target_file (optional) default is app.R , you can change this
+#' @param template_file (optiona) this is an override.Function expect that you params$template_file is set in params when template_file is NULL
+#' @export
+
+create_shinyapp <- function(params , target_file = "app.R" ,template_file = NULL){
+  if(is.null(template_file))
+    template_file <- params$template_file
+
+  template <- readr::read_file(file= template_file)
+
+  text <- whisker::whisker.render(template, params)
+  app_r <- paste(params$code_gen_location , target_file , sep = "/")
+
+
+  conn <- file(app_r)
+  writeLines(text, conn)
+  close(conn)
+}
+
 
 # to be used in RStudio "new project" GUI
 new_project <- function(path, ...) {
