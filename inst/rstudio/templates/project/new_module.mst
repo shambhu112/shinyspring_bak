@@ -1,0 +1,26 @@
+{{mod_name}}_libraries <- function(control ,params){
+
+}
+
+{{mod_name}}_onLoad <- function(control , params){
+
+}
+
+
+{{mod_name}}_ui <- function(id , control , params){
+  ns <- NS(id)
+  fluidRow(
+
+   ##Your UI Code here
+
+    )
+}
+
+
+{{mod_name}}_server <- function(id , control , params){
+moduleServer( id, function(input, output, session){
+    ns <- session$ns
+  ## Your server code here
+
+    })
+}
