@@ -12,9 +12,9 @@ library(sweetmods)
 
 thematic_shiny()
 
-params <- config::get(file = "{{sweetmod_config}}") ## {{sweetmod_config}}
+params <- config::get(file = "{{sweetmod_config}}") ## @@sweetmod_config
 controller <- app_master$new(params)
-#controller$preload_master_with_config()
+{{#preload_dataset}}controller$preload_master_with_config(){{/preload_dataset}}
 
 demo_ui <- function(id, control) {
   ns <- NS(id)
