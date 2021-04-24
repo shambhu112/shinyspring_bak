@@ -1,9 +1,12 @@
 # bs4_minimal_mst : Minimalistic bs4_dash configuration.
 # Adjust as per your needs
-# Documentation here #TODO link
+# Notes :
+#     1) this yml maps to template here https://github.com/shambhu112/shinyspring/blob/main/inst/bs4/bs4_minimal.mst
+#     2) For advanced users you cna modify template above use it to create your shiny app
 
 
-default:
+
+ default:
 ## DO NOT Change the following
   dashboard_template: {{dashboard_template}}
   template_file: !expr system.file("bs4/bs4_minimal.mst" , package = "shinyspring")  # Note: Advanced users can define new template
@@ -19,7 +22,6 @@ default:
   footer_right: version 1.0  #app_name
   sidebar_expand_onhover: FALSE
   dark_theme: FALSE
-  preload_dataset: FALSE
   header_href: https://www.shinyspring.dev
   header_image: https://storage.googleapis.com/shiny-pics/spring_logo.png
   header_fixed: 'TRUE'
@@ -29,8 +31,9 @@ default:
   side_bar_header: Sample App
 
 # Menus : You should customize - documentation here $TODO link for Menus
+# Note: the ui_function and server_function are from sweetmods or your custom modules
   menus: [
-    { title: Introduction , name: bank_mod , icon: universityan , comma: true ,
+    { title: Introduction , name: bank_mod , icon: university , comma: true ,
       ui_function: demo_ui , server_function: demo_server},
     { title: Core Analysis , name: branch_mod , icon: indent , comma: true ,
       ui_function: demo_ui , server_function: demo_server},
@@ -40,5 +43,9 @@ default:
       ui_function: demo_ui , server_function: demo_server}
   ]
 
-dev:
+# Sweetmods configurations
+ preload_dataset: FALSE
+
+
+ dev:
   code_gen_location: dev/play

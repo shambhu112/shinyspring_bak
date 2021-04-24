@@ -5,7 +5,7 @@ file.edit('{{config_file}}')
 
 ## Step 2 : Create app.R for your application
 params <- config::get(file = "{{config_file}}") # load params
-shinyspring::create_app_r(params = params )
+shinyspring::create_shinyapp(params = params )
 
 ## Step 3 : Launch the App
 shiny::runApp()
