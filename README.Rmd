@@ -35,7 +35,7 @@ A lot of peripheral modules related to *user authentication , filemanagement , D
 
 -   `shinyspring::create_new_project()` creates a new default project
 
-    -    Options include : `shinyspring::create_new_project(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml"`
+    -   Options include : `shinyspring::create_new_project(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml"`
 
     -   *dashboard_templates* : bs4_dash (available today) , future plans for shiny_dashboard and semantic_dashboard
 

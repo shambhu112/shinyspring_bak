@@ -62,6 +62,11 @@ plug and play manner to build a complete robust shinyapp.
     shiny::runApp()
     ```
 
+-   Step 3 : This should be step 2, but most people want to see a live
+    application before they go deep. So, now that you have seen the flow
+    of building the app , you will want to investigate sweetmods. The
+    power of shinyspring is in the reuse of sweetmods.
+
 ## FAQ’s
 
 -   Why Shinyspring ? What is the value add ?
