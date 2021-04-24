@@ -5,11 +5,11 @@
 
 default:
 ## DO NOT Change the following
-  dashboard_template: {{dashboard_template}}
+  dashboard_template: bs4_dash
   template_file: !expr system.file("bs4/bs4_minimal.mst" , package = "shinyspring")  # Note: Advanced users can define new template
 
 ## Adjust as per your App but defaults work well.
-  sweetmod_config : {{config_file}}
+  sweetmod_config : bs4_minimal_sample.yml
   code_gen_location: '.'
 
 
