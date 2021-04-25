@@ -23,6 +23,7 @@ download.file(url = "https://raw.githubusercontent.com/shambhu112/shinyspring/ma
 file.edit("bs4_custom.mst")
 
 # Step Create a new shiny app with custom template
+params <- config::get(file = "{{config_file}}") # load params
 shinyspring::create_shinyapp(params , target_file = "myapp.R" , template_file = "bs4_custom.mst")
 
 
