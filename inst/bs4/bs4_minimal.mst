@@ -103,9 +103,16 @@ ui <- bs4Dash::dashboardPage(
 
 ## Define server logic required to draw a histogram
 server <- function(input, output , session) {
-   {{#menus}}
-    {{server_function}}(id = "{{name}}" , control = controller)
-    {{/menus}}
+  mods <- controller$mods_names()
+  for(i in 1:length(mods)){
+    id <- mods[i]
+    p <- controller$params_for_mod(id)
+    index <- which(names(controller$params) == paste0(id , ".server_function"))
+  if(length(index) > 0 ){
+      server_function <- controller$params[index]
+      eval(parse(text= paste0(server_function , "(id = '" , id , "' , control = controller , params = p)")))
+     }
+  }
   }
 
     ## Run the application

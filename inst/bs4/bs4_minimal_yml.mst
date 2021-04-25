@@ -33,7 +33,7 @@
   app_title_h3: Bs4 Dash Minimalistic
   side_bar_fixed: TRUE
   side_bar_header: Sample App
-  header_opacity:0.8
+  header_opacity: 0.8
 
 # Menus : You should customize - documentation here $TODO link
 # Note: the ui_function and server_function are from sweetmods or your custom modules
