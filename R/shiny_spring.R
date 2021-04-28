@@ -1,3 +1,14 @@
+create_module_dependencies <- function(mod_name){
+  mod_template <- readr::read_file(system.file("rstudio/templates/project/new_module.mst"  , package = "shinyspring"))
+  dots <- list(mod_name = mod_name )
+  module_text <- whisker::whisker.render(mod_template , dots)
+  mod_file <- paste0(mod_name ,  ".R")
+  writeLines(module_text, con = file.path(mod_file))
+  cli::cli_alert_success("Created module  : {mod_file} ")
+}
+
+
+
 
 #' Create a baseline Module for your shinyapp
 #'
