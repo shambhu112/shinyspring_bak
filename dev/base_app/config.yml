@@ -14,6 +14,8 @@
   code_gen_location: '.'
   preload_dataset: true
   builtin_datasets: iris ; mtcars
+  source_file_onstartup: on_startup.R
+
 
 # Note you can preload files and targets also by adjusting the following commeted items
 # file_preloads : CHART4_NM.csv ; CHART2_MO_COUNTIES.csv ; DC_sis_dist.feather
@@ -50,10 +52,11 @@
 
 # Sweetmods configurations : : You should customize - documentation here $TODO
   intro_tab.mod_name: dummy_mod
+  intro_tab.message: This is a Dummy Mod replace this with your custom mod
 
   core_tab.mod_name: dummy_mod
 
-  esquiee_mod.mod_name: esquisse_mod
+  explore_tab.mod_name: esquisse_mod
 
   credits_tab.mod_name: dummy_mod
 

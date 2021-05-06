@@ -2,47 +2,20 @@
 ## template : bs4Dash
 ## app_type : minimal
 
-library(shiny)
-library(bs4Dash)
-library(thematic)
-library(waiter)
-library(stringr)
-library(dplyr)
-library(sweetmods)
-
-thematic_shiny()
-
+source("on_startup.R")
 
 
 params <- config::get(file = "config.yml") ## @@sweetmod_config
 controller <- app_master$new(params)
 controller$preload_master_with_config()
 registry <- sweetmods::mod_registry$new(params)
-mod_names <- registry$mods_names()
+
+
+# Note: This function is to be implemented by app developer in the file on_startup.R
+prep_on_start(controller , registry)
 
 # call on_load function on all modules
-onl <- sapply(mod_names, function(x){
-  p <- registry$params_for_mod(x)
-  package_prefix <- ifelse("package" %in% names(p) , paste0(p$package , "::") , "" )
-  if("onload_function" %in% names(p)){
-    onload_f <- paste0(package_prefix , p$onload_function , "(controller ,params = p)")
-    eval(parse(text= onload_f))
-    cli::cli_alert_info("Executed onload for {x} : {onload_f}")
-  }
-})
-onl <- NULL
-
-# Function to create the tab item and call the ui_function in module
-create_tab_module <- function(tab_module){
-  p <- registry$params_for_mod(tab_module)
-  ui_function <-  p$ui_function
-  package_prefix <- ifelse("package" %in% names(p) , paste0(p$package , "::") , "" )
- tabItem(
-    tabName = tab_module,
-    eval(parse(text = paste0(package_prefix , ui_function , "(id = '" , tab_module  ,"' , control = controller ,params = p)"  )))
-  )
-}
-
+on_load_for_mods(controller , registry)
 
 
 ## Define UI
@@ -106,10 +79,10 @@ ui <- bs4Dash::dashboardPage(
     ),  ## Close of sidebar
   body = dashboardBody(
     tabItems(
-      create_tab_module(tab_module = "intro_tab") ,
-      create_tab_module(tab_module = "core_tab") ,
-      create_tab_module(tab_module = "explore_tab") ,
-      create_tab_module(tab_module = "credits_tab") 
+      create_tab_module(tab_module = "intro_tab" , registry) ,
+      create_tab_module(tab_module = "core_tab" , registry) ,
+      create_tab_module(tab_module = "explore_tab" , registry) ,
+      create_tab_module(tab_module = "credits_tab" , registry) 
       )
     ) # Close of tab items
 )
