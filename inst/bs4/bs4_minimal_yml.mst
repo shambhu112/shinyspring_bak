@@ -50,6 +50,7 @@
 
 # Sweetmods configurations : : You should customize - documentation here $TODO
   intro_tab.mod_name: dummy_mod
+  intro_tab.message: This is a Dummy Mod replace this with your custom mod
 
   core_tab.mod_name: dummy_mod
 
