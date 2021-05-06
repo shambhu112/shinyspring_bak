@@ -29,18 +29,29 @@ create_module <- function(mod_name){
 #' @param dashboard_template (optional) defaults to "bs4_dash". Options are shiny_dashboard_plus , argon_dash
 #' @param app_type (optional) default to "basic". Options are
 #' @param config_file (optional)
+#' @param startup_file (optional) the on_startup file name
 #' @export
 
-create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml"){
-  dots <- list(dashboard_template = dashboard_template , app_type = app_type , config_file = config_file)
+create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml" ,
+                               startup_file = "on_startup.R"){
+  dots <- list(dashboard_template = dashboard_template , app_type = app_type ,
+               config_file = config_file , startup_file = startup_file)
   yml_file <- create_file_txt(dots , type = "yml")
   user_script <- create_file_txt(dots , type = "template")
+
+  start_file_template <- readr::read_file(system.file("rstudio/templates/project/on_startup.mst"  , package = "shinyspring"))
+  start_script <- whisker::whisker.render(start_file_template , dots)
+
 
   writeLines(yml_file, con = file.path(dots$config_file))
   cli::cli_alert_success("Created config at file : {dots$config_file} ")
 
   writeLines(user_script, con = file.path("user_script.R"))
   cli::cli_alert_success("Created start script : user_script.R ")
+
+  writeLines(start_script, con = file.path(startup_file))
+  cli::cli_alert_success("Created on_startup file : {startup_file} ")
+
   cli::cli_h2("Open user_script.R to start your shiny spring journey")
 
 }
@@ -80,11 +91,20 @@ new_project <- function(path, ...) {
   yml_file <- create_file_txt(dots , type = "yml")
   user_script <- create_file_txt(dots , type = "template")
 
+  start_file_template <- readr::read_file(system.file("rstudio/templates/project/on_startup.mst"  , package = "shinyspring"))
+  start_script <- whisker::whisker.render(start_file_template , dots)
+
+
   writeLines(yml_file, con = file.path(path , dots$config_file))
   cli::cli_alert_success("Created config at file : {dots$config_file} ")
 
   writeLines(user_script, con = file.path(path , "user_script.R"))
   cli::cli_alert_success("Created start script : user_script.R ")
+
+  startup_file <- "on_startup.R"
+  writeLines(start_script, con = file.path(startup_file))
+  cli::cli_alert_success("Created on_startup file : {startup_file} ")
+
   cli::cli_h2("Open user_script.R to start your shiny spring journey")
 
 }

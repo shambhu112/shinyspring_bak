@@ -2,15 +2,7 @@
 ## template : bs4Dash
 ## app_type : minimal
 
-library(shiny)
-library(bs4Dash)
-library(thematic)
-library(waiter)
-library(stringr)
-library(dplyr)
-library(sweetmods)
-
-thematic_shiny()
+source("{{source_file_onstartup}}")
 
 {{#basic_auth}}
 credentials <- data.frame(
@@ -25,38 +17,19 @@ credentials <- data.frame(
 library(shinymanager)
 {{/basic_auth}}
 
-
 params <- config::get(file = "{{sweetmod_config}}") ## @@sweetmod_config
 controller <- app_master$new(params)
 {{#preload_dataset}}
 controller$preload_master_with_config()
 {{/preload_dataset}}
 registry <- sweetmods::mod_registry$new(params)
-mod_names <- registry$mods_names()
+
+
+# Note: This function is to be implemented by app developer in the file on_startup.R
+prep_on_start(controller , registry)
 
 # call on_load function on all modules
-onl <- sapply(mod_names, function(x){
-  p <- registry$params_for_mod(x)
-  package_prefix <- ifelse("package" %in% names(p) , paste0(p$package , "::") , "" )
-  if("onload_function" %in% names(p)){
-    onload_f <- paste0(package_prefix , p$onload_function , "(controller ,params = p)")
-    eval(parse(text= onload_f))
-    cli::cli_alert_info("Executed onload for {x} : {onload_f}")
-  }
-})
-onl <- NULL
-
-# Function to create the tab item and call the ui_function in module
-create_tab_module <- function(tab_module){
-  p <- registry$params_for_mod(tab_module)
-  ui_function <-  p$ui_function
-  package_prefix <- ifelse("package" %in% names(p) , paste0(p$package , "::") , "" )
- tabItem(
-    tabName = tab_module,
-    eval(parse(text = paste0(package_prefix , ui_function , "(id = '" , tab_module  ,"' , control = controller ,params = p)"  )))
-  )
-}
-
+on_load_for_mods(controller , registry)
 
 
 ## Define UI
@@ -108,7 +81,7 @@ ui <- bs4Dash::dashboardPage(
   body = dashboardBody(
     tabItems(
       {{#menus}}
-      create_tab_module(tab_module = "{{name}}") {{#comma}},{{/comma}}
+      create_tab_module(tab_module = "{{name}}" , registry) {{#comma}},{{/comma}}
       {{/menus}}
       )
     ) # Close of tab items
