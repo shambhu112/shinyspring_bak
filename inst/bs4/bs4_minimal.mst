@@ -39,8 +39,8 @@ ui <- bs4Dash::dashboardPage(
   help = FALSE,
   fullscreen = TRUE,
   scrollToTop = TRUE,
-  header = dashboardHeader(
-    title = dashboardBrand(
+  header = bs4Dash::dashboardHeader(
+    title = bs4Dash::dashboardBrand(
       title = "{{app_title}}",
       color = "{{title_color}}", ## @@title_color
       href = "{{header_href}}", ## @@ header_href
@@ -55,13 +55,13 @@ ui <- bs4Dash::dashboardPage(
       )
     ) ## close left UI
   ),
-  sidebar = dashboardSidebar(
+  sidebar = bs4Dash::dashboardSidebar(
     fixed = {{side_bar_fixed}}, ## @@side_bar_fixed
     skin = "light",
     status = "primary",
     id = "sidebar",
 
-    sidebarMenu(
+    bs4Dash::sidebarMenu(
       id = "current_tab",
       flat = FALSE,
       compact = FALSE,
@@ -70,7 +70,7 @@ ui <- bs4Dash::dashboardPage(
 
 # Whisker:  Menus
       {{#menus}}
-        menuItem(
+        bs4Dash::menuItem(
           "{{title}}" ,
           tabName = "{{name}}",
           icon = icon("{{icon}}")
@@ -78,10 +78,10 @@ ui <- bs4Dash::dashboardPage(
           {{/menus}}
           )
     ),  ## Close of sidebar
-  body = dashboardBody(
+  body = bs4Dash::dashboardBody(
     tabItems(
       {{#menus}}
-      create_tab_module(tab_module = "{{name}}" , registry) {{#comma}},{{/comma}}
+      create_tab_module(tab_module = "{{name}}" , registry , controller) {{#comma}},{{/comma}}
       {{/menus}}
       )
     ) # Close of tab items
