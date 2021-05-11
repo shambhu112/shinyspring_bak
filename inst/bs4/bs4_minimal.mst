@@ -101,11 +101,8 @@ server <- function(input, output , session) {
   for(i in 1:length(mods)){
     id <- mods[i]
     p <- registry$params_for_mod(id)
-    index <- which(names(controller$params) == paste0(id , ".server_function"))
-  if(length(index) > 0 ){
-      server_function <- controller$params[index]
-      eval(parse(text= paste0(server_function , "(id = '" , id , "' , control = controller , params = p)")))
-     }
+    server_function <- registry$mod_params[[id]]$server_function
+    eval(parse(text= paste0(server_function , "(id = '" , id , "' , control = controller , params = p)")))
   }
   }
 
