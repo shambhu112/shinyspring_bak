@@ -69,9 +69,13 @@ create_shinyapp <- function(params , target_file = "app.R" ,template_file = NULL
   if(is.null(template_file))
     template_file <- params$template_file
 
+
   template <- readr::read_file(file= template_file)
-  create_new_project(dashboard_template = template_file , app_type = dots$app_type ,
-                     config_file = dots$config_file , startup_file = "on_startup.R")
+  text <- whisker::whisker.render(template, params)
+  app_r <- paste(params$code_gen_location , target_file , sep = "/")
+  conn <- file(app_r)
+  writeLines(text, conn)
+  close(conn)
 }
 
 

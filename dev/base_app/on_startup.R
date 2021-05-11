@@ -37,7 +37,7 @@ on_load_for_mods <- function(control , registry){
 
 # Function to create the tab item and call the ui_function in module
 # KEEP this Function and DO NOT Change . This function is called from app.R.
-create_tab_module <- function(tab_module , registry){
+create_tab_module <- function(tab_module , registry , controller){
   p <- registry$params_for_mod(tab_module)
   ui_function <-  p$ui_function
   package_prefix <- ifelse("package" %in% names(p) , paste0(p$package , "::") , "" )

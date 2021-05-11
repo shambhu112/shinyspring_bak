@@ -25,8 +25,8 @@ ui <- bs4Dash::dashboardPage(
   help = FALSE,
   fullscreen = TRUE,
   scrollToTop = TRUE,
-  header = dashboardHeader(
-    title = dashboardBrand(
+  header = bs4Dash::dashboardHeader(
+    title = bs4Dash::dashboardBrand(
       title = "Sample App",
       color = "primary", ## @@title_color
       href = "https://www.shinyspring.dev", ## @@ header_href
@@ -41,13 +41,13 @@ ui <- bs4Dash::dashboardPage(
       )
     ) ## close left UI
   ),
-  sidebar = dashboardSidebar(
+  sidebar = bs4Dash::dashboardSidebar(
     fixed = TRUE, ## @@side_bar_fixed
     skin = "light",
     status = "primary",
     id = "sidebar",
 
-    sidebarMenu(
+    bs4Dash::sidebarMenu(
       id = "current_tab",
       flat = FALSE,
       compact = FALSE,
@@ -55,34 +55,34 @@ ui <- bs4Dash::dashboardPage(
       sidebarHeader("Sample App"),
 
 # Whisker:  Menus
-        menuItem(
+        bs4Dash::menuItem(
           "Introduction" ,
           tabName = "intro_tab",
           icon = icon("university")
         ),
-        menuItem(
+        bs4Dash::menuItem(
           "Core Analysis" ,
           tabName = "core_tab",
           icon = icon("indent")
         ),
-        menuItem(
+        bs4Dash::menuItem(
           "Data Exploration" ,
           tabName = "explore_tab",
           icon = icon("chart-bar")
         ),
-        menuItem(
+        bs4Dash::menuItem(
           "Credits" ,
           tabName = "credits_tab",
           icon = icon("heart")
         )
           )
     ),  ## Close of sidebar
-  body = dashboardBody(
+  body = bs4Dash::dashboardBody(
     tabItems(
-      create_tab_module(tab_module = "intro_tab" , registry) ,
-      create_tab_module(tab_module = "core_tab" , registry) ,
-      create_tab_module(tab_module = "explore_tab" , registry) ,
-      create_tab_module(tab_module = "credits_tab" , registry) 
+      create_tab_module(tab_module = "intro_tab" , registry , controller) ,
+      create_tab_module(tab_module = "core_tab" , registry , controller) ,
+      create_tab_module(tab_module = "explore_tab" , registry , controller) ,
+      create_tab_module(tab_module = "credits_tab" , registry , controller) 
       )
     ) # Close of tab items
 )
