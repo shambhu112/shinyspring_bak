@@ -25,6 +25,7 @@ create_module <- function(mod_name){
 
 
 #' CLI option to create a new Shiny Spring Project based on predefined templates in shinyspring
+#' The New Project wizard in RStudio also call this method
 #'
 #' @param dashboard_template (optional) defaults to "bs4_dash". Options are shiny_dashboard_plus , argon_dash
 #' @param app_type (optional) default to "basic". Options are
@@ -36,6 +37,7 @@ create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "min
                                startup_file = "on_startup.R"){
   dots <- list(dashboard_template = dashboard_template , app_type = app_type ,
                config_file = config_file , startup_file = startup_file)
+
   yml_file <- create_file_txt(dots , type = "yml")
   user_script <- create_file_txt(dots , type = "template")
 
@@ -86,29 +88,37 @@ new_project <- function(path, ...) {
 
   dots <- list(...)
 
-  yml_file <- create_file_txt(dots , type = "yml")
-  user_script <- create_file_txt(dots , type = "template")
-
-  start_file_template <- readr::read_file(system.file("rstudio/templates/project/on_startup.mst"  , package = "shinyspring"))
-  start_script <- whisker::whisker.render(start_file_template , dots)
+  template <- dots$dashboard_template
+  app_type <- dots$app_type
 
 
-  writeLines(yml_file, con = file.path(path , dots$config_file))
-  cli::cli_alert_success("Created config at file : {dots$config_file} ")
+  create_new_project(dashboard_template = dots$dashboard_template ,
+                     app_type = dots$app_type ,
+                     config_file =  dots$config_file)
 
-  writeLines(user_script, con = file.path(path , "user_script.R"))
-  cli::cli_alert_success("Created start script : user_script.R ")
+  #yml_file <- create_file_txt(dots , type = "yml")
+  #user_script <- create_file_txt(dots , type = "template")
 
-  startup_file <- "on_startup.R"
-  writeLines(start_script, con = file.path(startup_file))
-  cli::cli_alert_success("Created on_startup file : {startup_file} ")
+  #start_file_template <- readr::read_file(system.file("rstudio/templates/project/on_startup.mst"  , package = "shinyspring"))
+  #start_script <- whisker::whisker.render(start_file_template , dots)
 
-  cli::cli_h2("Open user_script.R to start your shiny spring journey")
+
+  #writeLines(yml_file, con = file.path(path , dots$config_file))
+  #cli::cli_alert_success("Created config at file : {dots$config_file} ")
+
+  #writeLines(user_script, con = file.path(path , "user_script.R"))
+  #cli::cli_alert_success("Created start script : user_script.R ")
+
+  #startup_file <- "on_startup.R"
+  #writeLines(start_script, con = file.path(startup_file))
+  #cli::cli_alert_success("Created on_startup file : {startup_file} ")
+
+  #cli::cli_h2("Open user_script.R to start your shiny spring journey")
 
 }
 
 
-create_file_txt <- function(dots , type){
+create_file_txt <- function(dots , type ){
   if(type == "yml"){
     yml_template_file <- create_mst_filename(dots , type = "yml" )
     yml_template <- readr::read_file(yml_template_file)

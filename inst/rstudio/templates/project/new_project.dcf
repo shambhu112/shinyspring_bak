@@ -13,8 +13,8 @@ Position: left
 Parameter: app_type
 Widget: SelectInput
 Label: Application Type
-Fields:  minimal , full , test_harness
-Default: minimal
+Fields:  minimal , standard , full_demo
+Default: standard
 Position: right
 
 
