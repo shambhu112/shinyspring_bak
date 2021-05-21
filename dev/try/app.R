@@ -3,12 +3,13 @@
 ## app_type : minimal
 
 source("on_startup.R")
+library(shinyspring)
 
 
 params <- config::get(file = "config.yml") ## @@sweetmod_config
 controller <- app_master$new(params)
 controller$preload_master_with_config()
-registry <- sweetmods::mod_registry$new(params)
+registry <- shinyspring::mod_registry$new(params)
 
 
 # Note: This function is to be implemented by app developer in the file on_startup.R
@@ -95,11 +96,8 @@ server <- function(input, output , session) {
   for(i in 1:length(mods)){
     id <- mods[i]
     p <- registry$params_for_mod(id)
-    index <- which(names(controller$params) == paste0(id , ".server_function"))
-  if(length(index) > 0 ){
-      server_function <- controller$params[index]
-      eval(parse(text= paste0(server_function , "(id = '" , id , "' , control = controller , params = p)")))
-     }
+    server_function <- registry$mod_params[[id]]$server_function
+    eval(parse(text= paste0(server_function , "(id = '" , id , "' , control = controller , params = p)")))
   }
   }
 

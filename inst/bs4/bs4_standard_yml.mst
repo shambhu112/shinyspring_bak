@@ -8,6 +8,7 @@
 ## DO NOT Change the following
   dashboard_template: {{dashboard_template}}
   template_file: !expr system.file("bs4/bs4_standard.mst" , package = "shinyspring")  # Note: Advanced users can define new template
+  code_gen_location: '.'
   dummy_test.mod_name: dummy_mod
   dummy_test.weird_param: dummy
 

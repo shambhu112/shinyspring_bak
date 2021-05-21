@@ -1,26 +1,36 @@
-# bs4_minimal_mst : Minimalistic bs4_dash configuration.
+# bs4_standard_mst : Standard bs4_dash configuration.
 # Adjust as per your needs
 # Notes :
-#     1) this yml maps to template here https://github.com/shambhu112/shinyspring/blob/main/inst/bs4/bs4_minimal.mst
-#     2) For advanced users you cna modify template above use it to create your shiny app
+#     1) this yml maps to template here https://github.com/shambhu112/shinyspring/blob/main/inst/bs4/bs4_standard.mst
+#     2) Advanced users  can modify template above and customize the template
 
  default:
 ## DO NOT Change the following
   dashboard_template: bs4_dash
-  template_file: !expr system.file("bs4/bs4_minimal.mst" , package = "shinyspring")  # Note: Advanced users can define new template
+  template_file: !expr system.file("bs4/bs4_standard.mst" , package = "shinyspring")  # Note: Advanced users can define new template
+  code_gen_location: '.'
+  dummy_test.mod_name: dummy_mod
+  dummy_test.weird_param: dummy
+
 
 # Adjust as per your App but defaults work well.
   sweetmod_config : config.yml
-  code_gen_location: '.'
   preload_dataset: true
   builtin_datasets: iris ; mtcars
   source_file_onstartup: on_startup.R
 
+# datsets : This is the approach to pre-load datasets
+  ds.iris.type: built_in
+  ds.iris.connection: iris
+
+  ds.mtcars.type: built_in
+  ds.mtcars.connection: mtcars
+
+  ds.air_quality.type: built_in
+  ds.air_quality.connection: airquality
+
 
 # Note you can preload files and targets also by adjusting the following commeted items
-# file_preloads : CHART4_NM.csv ; CHART2_MO_COUNTIES.csv ; DC_sis_dist.feather
-# file_preloads_ds_name : mexico ; misssouri ; dc_branches
-# tar_loads : dataset1 ; dataset2
 
 # Dashboard UI information : You should customize
   app_title: Sample App

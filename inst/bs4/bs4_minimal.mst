@@ -4,25 +4,13 @@
 
 source("{{source_file_onstartup}}")
 
-{{#basic_auth}}
-credentials <- data.frame(
-  user = c("shinyspring", "shinymanager"), # mandatory
-  password = c("shinyspring", "12345"), # mandatory
-  start = c("2019-04-15"), # optinal (all others)
-  expire = c(NA, "2022-12-31"),
-  admin = c(FALSE, TRUE),
-  comment = "Simple and secure Auth",
-  stringsAsFactors = FALSE
-)
-library(shinymanager)
-{{/basic_auth}}
 
 params <- config::get(file = "{{sweetmod_config}}") ## @@sweetmod_config
 controller <- app_master$new(params)
 {{#preload_dataset}}
 controller$preload_master_with_config()
 {{/preload_dataset}}
-registry <- sweetmods::mod_registry$new(params)
+registry <- shinyspring::mod_registry$new(params)
 
 
 # Note: This function is to be implemented by app developer in the file on_startup.R

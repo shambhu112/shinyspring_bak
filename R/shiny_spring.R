@@ -1,13 +1,10 @@
-create_module_dependencies <- function(mod_name){
-  mod_template <- readr::read_file(system.file("rstudio/templates/project/new_module.mst"  , package = "shinyspring"))
-  dots <- list(mod_name = mod_name )
-  module_text <- whisker::whisker.render(mod_template , dots)
-  mod_file <- paste0(mod_name ,  ".R")
-  writeLines(module_text, con = file.path(mod_file))
-  cli::cli_alert_success("Created module  : {mod_file} ")
+create_module_dependencies <- function(mod_name , package = "sweetmods"){
+
 }
 
+test_config_file <- function(params){
 
+}
 
 
 #' Create a baseline Module for your shinyapp
@@ -33,7 +30,7 @@ create_module <- function(mod_name){
 #' @param startup_file (optional) the on_startup file name
 #' @export
 
-create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml" ,
+create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "standard" , config_file = "config.yml" ,
                                startup_file = "on_startup.R"){
   dots <- list(dashboard_template = dashboard_template , app_type = app_type ,
                config_file = config_file , startup_file = startup_file)

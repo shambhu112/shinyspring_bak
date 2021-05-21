@@ -3,6 +3,7 @@
 ## app_type : minimal
 
 source("{{source_file_onstartup}}")
+library(shinyspring)
 
 {{#basic_auth}}
 credentials <- data.frame(
@@ -22,7 +23,7 @@ controller <- app_master$new(params)
 {{#preload_dataset}}
 controller$preload_master_with_config()
 {{/preload_dataset}}
-registry <- sweetmods::mod_registry$new(params)
+registry <- shinyspring::mod_registry$new(params)
 
 
 # Note: This function is to be implemented by app developer in the file on_startup.R

@@ -8,6 +8,7 @@
 ## DO NOT Change the following
   dashboard_template: {{dashboard_template}}
   template_file: !expr system.file("bs4/bs4_minimal.mst" , package = "shinyspring")  # Note: Advanced users can define new template
+  code_gen_location: '.'
   dummy_test.mod_name: dummy_mod
   dummy_test.weird_param: dummy
 
@@ -16,18 +17,12 @@
   sweetmod_config : {{config_file}}
   code_gen_location: '.'
   preload_dataset: true
-  builtin_datasets: iris ; mtcars
   source_file_onstartup: on_startup.R
 
 # datsets : This is the approach to pre-load datasets
   ds.iris.type: built_in
   ds.iris.connection: iris
 
-  ds.mtcars.type: built_in
-  ds.mtcars.connection: mtcars
-
-  ds.air_quality.type: built_in
-  ds.air_quality.connection: airquality
 
 
 # Note you can preload files and targets also by adjusting the following commeted items
@@ -53,10 +48,7 @@
 # Menus : You should customize - documentation here $TODO link
 # Note: the ui_function and server_function are from sweetmods or your custom modules
   menus: [
-    { title: Introduction , name: intro_tab , icon: university , comma: true },
-    { title: Core Analysis , name: core_tab , icon: indent , comma: true },
-    { title: Data Exploration , name: explore_tab , icon: chart-bar , comma: true },
-    { title: Credits , name: credits_tab , icon: heart , comma: false }
+    { title: Introduction , name: intro_tab , icon: university , comma: true }
   ]
 
 
@@ -64,11 +56,6 @@
   intro_tab.mod_name: dummy_mod
   intro_tab.message: This is a Dummy Mod replace this with your custom mod
 
-  core_tab.mod_name: dummy_mod
-
-  explore_tab.mod_name: esquisse_mod
-
-  credits_tab.mod_name: dummy_mod
 
  dev:
   code_gen_location: dev/play
