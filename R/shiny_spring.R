@@ -38,8 +38,8 @@ create_new_project <- function(dashboard_template = "bs4_dash" , app_type = "min
   dots <- list(dashboard_template = dashboard_template , app_type = app_type ,
                config_file = config_file , startup_file = startup_file)
 
-  yml_file <- create_file_txt(dots , type = "yml")
-  user_script <- create_file_txt(dots , type = "template")
+  yml_file <- create_file_txt(dots , type = "yml" )
+  user_script <- create_file_txt(dots , type = "template" )
 
   start_file_template <- readr::read_file(system.file("rstudio/templates/project/on_startup.mst"  , package = "shinyspring"))
   start_script <- whisker::whisker.render(start_file_template , dots)
@@ -140,14 +140,15 @@ create_mst_filename <- function(dots , type ){
     x == "bs4_dash" ~ "bs4_" ,
     TRUE ~ "plc_"
   )
-
+  x <- dots$app_type
   a_type <- dplyr::case_when(
     x == "minimal" ~ "minimal" ,
-    x == "full" ~ "full" ,
-    x == "test_harness" ~ "harness",
+    x == "standard" ~ "standard" ,
+    x == "full_demo" ~ "full_demo",
     TRUE ~ "minimal"
   )
 
+  x <- dots$dashboard_template
   dir <- dplyr::case_when(
     x == "bs4_dash" ~ "bs4" ,
     TRUE ~ "plc"

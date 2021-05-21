@@ -2,7 +2,8 @@
 % Please edit documentation in R/shiny_spring.R
 \name{create_new_project}
 \alias{create_new_project}
-\title{CLI option to create a new Shiny Spring Project based on predefined templates in shinyspring}
+\title{CLI option to create a new Shiny Spring Project based on predefined templates in shinyspring
+The New Project wizard in RStudio also call this method}
 \usage{
 create_new_project(
   dashboard_template = "bs4_dash",
@@ -22,4 +23,5 @@ create_new_project(
 }
 \description{
 CLI option to create a new Shiny Spring Project based on predefined templates in shinyspring
+The New Project wizard in RStudio also call this method
 }
