@@ -2,8 +2,12 @@ create_module_dependencies <- function(mod_name , package = "sweetmods"){
 
 }
 
+#' Checks if the config file is good to go
+#' Note : this runs a bunch of testthat tests
+#' @params params all params
+#' @export
 test_config_file <- function(params){
-
+  run_checks(params)
 }
 
 

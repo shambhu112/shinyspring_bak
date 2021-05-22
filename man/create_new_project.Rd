@@ -7,7 +7,7 @@ The New Project wizard in RStudio also call this method}
 \usage{
 create_new_project(
   dashboard_template = "bs4_dash",
-  app_type = "minimal",
+  app_type = "standard",
   config_file = "config.yml",
   startup_file = "on_startup.R"
 )

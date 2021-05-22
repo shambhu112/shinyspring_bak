@@ -20,9 +20,9 @@ Imports:
     tidyselect ,
     vroom ,
     snakecase ,
+    testthat (>= 3.0.0),
     cli
 Suggests: 
-    testthat (>= 3.0.0),
     arrow ,
     targets
 Config/testthat/edition: 3
