@@ -1,7 +1,7 @@
 url: https://shambhu112.github.io/shinyspring
 template:
   params:
-    bootswatch: cosmo
+    bootswatch: cosmop
 reference:
 - title: "Templating and File Creation"
   desc: >
