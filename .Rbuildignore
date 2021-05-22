@@ -7,3 +7,6 @@
 ^data-raw$
 ^dev$
 ^venv$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

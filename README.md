@@ -1,5 +1,3 @@
-Build fast production ready shiny apps
-================
 
 # shinyspring <a href='https://www.shinyspring.dev'><img src="https://storage.googleapis.com/shiny-pics/spring_logo.png" align="right" height="139"/></a>
 
@@ -7,36 +5,36 @@ Build fast production ready shiny apps
 
 <!-- badges: end -->
 
+> Build fast production ready shiny apps.
+
 ## Overview
 
-shinyspring provides a development framework with templates based on
-bs4dash and more(to be added) .In collaboration with the
-{{sweetmods}}package shinyframework enables you to focus on core
-insights app that you want for your usebase.
+shinyspring provides a development framework , templates and automation
+to build
+[bs4dash](https://rinterface.github.io/bs4Dash/ "Admin LTE3 based dashboard")
+based shinyapps. In collaboration with the
+{{[sweetmods](https://github.com/shambhu112/sweetmods "Sweetmods on github")}}package
+shinyframework enables you to focus on developing the core insights app
+for your usebase leaving all the other needed stuff for building a
+complete dashboard to the shinyframework
 
-A lot of peripheral modules related to *user authentication ,
-filemanagement , Data explorations and several others* can added in a
-plug and play manner to build a complete robust shinyapp.
-
-### New Project Creation in Rstudio
-
-| Screen 1                                                     | Screen 2                                                     |
-|--------------------------------------------------------------|--------------------------------------------------------------|
-| <img src="man/figures/README-newproject-1.png" width="400"/> | <img src="man/figures/README-newproject-2.png" width="400"/> |
+A lot of peripheral modules related to *user authentication , datasource
+management, job scheduling via targets, Data explorations and several
+others* can added in a plug and play manner to build a complete robust
+shinyapp.
 
 ### New Project Creation : **Programmatically**
 
 -   `shinyspring::create_new_project()` creates a new default project
 
     -   Options include :
-        `shinyspring::create_new_project(dashboard_template = "bs4_dash" , app_type = "minimal" , config_file = "config.yml"`
+        `shinyspring::create_new_project(dashboard_template = "bs4_dash" , app_type = "standard" , config_file = "config.yml"`
 
     -   *dashboard\_templates* : bs4\_dash (available today) , future
         plans for shiny\_dashboard and semantic\_dashboard
 
-    -   *app\_type* : minimal (bare minimum app) , full (full app with
-        all sweetmods visible) , demo\_app (recreate the demo\_app and
-        customize for your needs)
+    -   *app\_type* : minimal (bare minimum app) , standard (defaukt) ,
+        full\_demo (full app with all sweetmods visible)
 
 ## Steps to create a new app
 
@@ -54,18 +52,28 @@ plug and play manner to build a complete robust shinyapp.
 
     ## Step 2 : Create app.R for your application
     params <- config::get(file = "config.yml") # load params
-    shinyspring::create_app_r(params = params )
-    file.edit('app.R') # Adjust this to your app.R if you change the file
+    shinyspring::create_shinyapp(params = params )
+    shinyspring::test_config_file(params)
 
 
     ## Step 3 : Launch the App
     shiny::runApp()
     ```
 
--   Step 3 : This should be step 2, but most people want to see a live
-    application before they go deep. So, now that you have seen the flow
-    of building the app , you will want to investigate sweetmods. The
-    power of shinyspring is in the reuse of sweetmods.
+-   Step 4 : Create your custom module for you application with
+    `shinyspring::create_module("my_custom_module")` . Implement the
+    module
+
+-   Step 5 : Adjust `config.yml` to add menu’s and leverage pre-built /
+    tested [sweetmod](https://github.com/shambhu112/sweetmods)s that can
+    be used in your app in a plug and play manner . The power of
+    shinyspring is in the reuse of sweetmods.
+
+### New Project Creation in Rstudio
+
+| Screen 1                                                     | Screen 2                                                     |
+|--------------------------------------------------------------|--------------------------------------------------------------|
+| <img src="man/figures/README-newproject-1.png" width="400"/> | <img src="man/figures/README-newproject-2.png" width="400"/> |
 
 ## FAQ’s
 
