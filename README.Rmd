@@ -58,7 +58,7 @@ A lot of peripheral modules related to *user authentication , datasource managem
     shiny::runApp()
     ```
 
--   Step 4 : Create your custom module for you application with `shinyspring::create_module("my_custom_module")` . Implement the module
+-   Step 4 : After testing the basic app launch you can now create your custom module for you application with `shinyspring::create_module("my_custom_module")` . Implement the module
 
 -   Step 5 : Adjust `config.yml` to add menu's and leverage pre-built / tested [sweetmod](https://github.com/shambhu112/sweetmods)s that can be used in your app in a plug and play manner . The power of shinyspring is in the reuse of sweetmods.
 
