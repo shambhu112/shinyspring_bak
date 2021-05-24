@@ -1,6 +1,16 @@
 default:
-  sweetmod_version: 0.0.0.9000
+  dashboard_template: bs4_dash
+  template_file: !expr system.file("bs4/bs4_standard.mst" , package = "shinyspring")  # Note: Advanced users can define new template
+  code_gen_location: '.'
+  dummy_test.mod_name: dummy_mod
+  dummy_test.weird_param: dummy
+
+  sweetmod_config : config.yml
   preload_dataset: true
+  builtin_datasets: iris ; mtcars
+  source_file_onstartup: on_startup.R
+
+
 
 # datsets
   ds.mexico.type: csv
@@ -23,6 +33,19 @@ default:
   ds.mtcars.type: built_in
   ds.mtcars.connection: mtcars
 
+  menus: [
+    { title: Introduction , name: intro_mod , icon: university  },
+    { title: CoreAnalysis , name: core_mod , icon: indent  },
+    { title: Data Exploration ,  icon: chart-bar ,  parent_menu: true ,
+       sub_menu: [
+         {first:  true ,submenu_title: Visualize , submenu_name: explore_tab , submenu_icon: circle-thin } ,
+         {last_submenu:  true , submenu_title: Correlations , submenu_name: corr_tab , submenu_icon: cubes } ,
+       ]
+    },
+    { title: Credits , name: credits_tab , icon: heart , last_menu: true }
+  ]
+
+
 #Mods
   core_mod.mod_name: dummy_mod
   core_mod.package: sweetmods
@@ -44,4 +67,6 @@ default:
   bank_mod.ui_function: bank_mod_ui
   bank_mod.server_function: bank_mod_server
   bank_mod.onload_function: bank_mod_onload
+
+  corr_tab.mod_name: corr_mod
 

@@ -7,6 +7,9 @@ Note : this runs a bunch of testthat tests}
 \usage{
 test_config_file(params)
 }
+\arguments{
+\item{params}{all params}
+}
 \description{
 Checks if the config file is good to go
 Note : this runs a bunch of testthat tests

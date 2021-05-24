@@ -1,9 +1,14 @@
 ## This Shiny App created with Shinyspring - http://www.shinyspring.dev
 ## template : bs4Dash
-## app_type : minimal
+## app_type : standard
+
+## Note: Best practice is to never edit this file and always use shinyspring::create_shinyapp in userscript.R to create this file
+## userscript describes and approach to change the template also
+
+library(shinyspring)
 
 source("{{source_file_onstartup}}")
-library(shinyspring)
+## Please edit {{source_file_onstartup}} for your app specific loadings and adjustments
 
 {{#basic_auth}}
 credentials <- data.frame(
@@ -18,7 +23,7 @@ credentials <- data.frame(
 library(shinymanager)
 {{/basic_auth}}
 
-params <- config::get(file = "{{sweetmod_config}}") ## @@sweetmod_config
+params <- config::get(file = "{{sweetmod_config}}")
 controller <- app_master$new(params)
 {{#preload_dataset}}
 controller$preload_master_with_config()
@@ -26,7 +31,7 @@ controller$preload_master_with_config()
 registry <- shinyspring::mod_registry$new(params)
 
 
-# Note: This function is to be implemented by app developer in the file on_startup.R
+# Note: This function is to be implemented by app developer in the file {{source_file_onstartup}}
 prep_on_start(controller , registry)
 
 # call on_load function on all modules
@@ -73,16 +78,29 @@ ui <- bs4Dash::dashboardPage(
       {{#menus}}
         bs4Dash::menuItem(
           "{{title}}" ,
-          tabName = "{{name}}",
+          {{^parent_menu}} tabName = "{{name}}" , {{/parent_menu}}
           icon = icon("{{icon}}")
-        ){{#comma}},{{/comma}}
+          {{#sub_menu}}
+             {{#first}} , {{/first}}
+            bs4Dash::menuSubItem(
+               text = "{{submenu_title}}" ,
+               tabName = "{{submenu_name}}" ,
+               icon = icon("{{submenu_icon}}")
+             ) {{^last_submenu}} , {{/last_submenu}}
+          {{/sub_menu}}
+        ){{^last_menu}},{{/last_menu}}
           {{/menus}}
           )
     ),  ## Close of sidebar
   body = bs4Dash::dashboardBody(
     tabItems(
       {{#menus}}
-      create_tab_module(tab_module = "{{name}}" , registry , controller) {{#comma}},{{/comma}}
+      {{^parent_menu}}
+          create_tab_module(tab_module = "{{name}}" , registry , controller) {{^last_menu}},{{/last_menu}}
+       {{/parent_menu}}
+       {{#sub_menu}}
+          create_tab_module(tab_module = "{{submenu_name}}" , registry , controller) {{^last_menu}},{{/last_menu}}
+       {{/sub_menu}}
       {{/menus}}
       )
     ) # Close of tab items

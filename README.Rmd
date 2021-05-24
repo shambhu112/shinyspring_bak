@@ -34,7 +34,7 @@ A lot of peripheral modules related to *user authentication , datasource managem
 
     -   *dashboard_templates* : bs4_dash (available today) , future plans for shiny_dashboard and semantic_dashboard
 
-    -   *app_type* : minimal (bare minimum app) , standard (defaukt) , full_demo (full app with all sweetmods visible)
+    -   *app_type* : minimal (bare minimum app) , standard (default) , full_demo (full app with all sweetmods visible)
 
 ## Steps to create a new app
 
@@ -72,8 +72,6 @@ A lot of peripheral modules related to *user authentication , datasource managem
 
 -   Why Shinyspring ? What is the value add ?
 
--   Is Shinyspring robust and production ready ?
-
 -   What is the development framework for Shinyspring ?
 
 -   What are current modules available and what are the plans for future ?
@@ -81,3 +79,5 @@ A lot of peripheral modules related to *user authentication , datasource managem
 -   How can I build modules that work with shiynspring ?
 
 -   How can I contribute to shinyspring ?
+
+-   Is Shinyspring robust and production ready ?

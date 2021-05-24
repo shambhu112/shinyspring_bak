@@ -53,3 +53,9 @@ test_that("appr initial scripot " , {
 
   expect_true("core_mod" %in% mod_names)
 })
+
+test_that("test config text" , {
+  params <- config::get(file = "test_config.yml") ## @@sweetmod_config
+  shinyspring::test_config_file(params)
+
+})
