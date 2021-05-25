@@ -1,7 +1,14 @@
 url: https://shambhu112.github.io/shinyspring
+
 template:
   params:
     bootswatch: cosmo
+
+home:
+  links:
+  - text: Sweetmods - related package
+    href: https://github.com/shambhu112/sweetmods
+
 reference:
 - title: "Templating and File Creation"
   desc: >
