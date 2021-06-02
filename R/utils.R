@@ -47,6 +47,15 @@ new_row <- function(sr_num , ds , ds_name ,ds_params){
   } else{
     pretty_nms <- ds_params$pretty_names #TODO: this needs to tested if it works
   }
+
+  if(!is.null(ds_params$rename_cols)){
+    if(length(ds_params$rename_cols) == ncol(ds)){
+      colnames(ds) <- ds_params$rename_cols
+    }else{
+      cli::cli_alert_warning("The rename_cols params for dataset {ds_name} is not right. Proceeding without renaming")
+    }
+  }
+
   row <- tibble::tibble(
     "srnum" = sr_num,
     "connection_str" = ds_params$connection,

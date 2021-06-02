@@ -16,16 +16,22 @@ default:
   ds.mexico.type: csv
   ds.mexico.connection: CHART4_NM.csv
   ds.mexico.subset: 100
+  ds.mexico.pretty_names: !expr c("plaintiff" , "type" , "y96", "y97","y98","y99","y00","y01","y02","y03","y04","y05","y06","y07","y08","y09","y10","y11","y12","y13","y14")
 
   ds.misssouri.type: csv
   ds.misssouri.connection: CHART2_MO_COUNTIES.csv
- #ds.misssouri.pretty_name: c("XX", "YYY")
+ #ds.misssouri.pretty_name: !expr c("XX", "YYY")
 
   ds.lending_club.type: rds
   ds.lending_club.connection: lending_club.rds
 
   ds.lending_club_2.type: feather
   ds.lending_club_2.connection: lending_club.feather
+
+
+  ds.branch_dis.type: feather
+  ds.branch_dis.connection: DC_sis_dist.feather
+  ds.branch_dis.rename_cols: !expr c("branch_key" , "km100" , "km50" , "km20" , "km10" , "km5" , "km1" ,"closest_ct" , "closest_km")
 
   ds.iris.type: built_in
   ds.iris.connection: iris

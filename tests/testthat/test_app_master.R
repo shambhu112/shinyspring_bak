@@ -34,6 +34,18 @@ test_that("dataset by naem with limit on size" , {
 })
 
 
+test_that("rename cols" , {
+  master <- app_master$new(params = params)
+  master$preload_master_with_config()
+  ds_names <- master$dataset_names()
+
+  cols <- master$ds_config$branch_dis$rename_cols
+  expect_equal(length(cols) , 9)
+
+  cnames <- colnames(master$dataset_by_name("branch_dis"))
+  expect_true("km100" %in% cnames)
+})
+
 
 test_that("check built in datasets" , {
   master <- app_master$new(params = params)
@@ -91,7 +103,7 @@ test_that("pretty names" , {
 
 
   pnames <- master$prettynames_for_dataset("mexico")
-  expect_true("clean_plaintiff" %in% pnames)
+  expect_true("y96" %in% pnames)
 
 })
 
