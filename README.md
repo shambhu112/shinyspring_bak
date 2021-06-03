@@ -1,7 +1,14 @@
 
 # shinyspring <a href='https://www.shinyspring.dev'><img src="https://storage.googleapis.com/shiny-pics/spring_logo.png" align="right" height="139"/></a>
 
-# <!-- badges: start --> [![CRAN status](https://www.r-pkg.org/badges/version/dplyr)](https://cran.r-project.org/package=dplyr) [![R build status](https://github.com/tidyverse/dplyr/workflows/R-CMD-check/badge.svg)](https://github.com/tidyverse/dplyr/actions?workflow=R-CMD-check) [![Codecov test coverage](https://codecov.io/gh/tidyverse/dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master)
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/dplyr)](https://cran.r-project.org/package=dplyr)
+[![R build
+status](https://github.com/tidyverse/dplyr/workflows/R-CMD-check/badge.svg)](https://github.com/tidyverse/dplyr/actions?workflow=R-CMD-check)
+[![Codecov test
+coverage](https://codecov.io/gh/tidyverse/dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master)
 
 <!-- badges: end -->
 
@@ -33,7 +40,7 @@ shinyapp.
     -   *dashboard\_templates* : bs4\_dash (available today) , future
         plans for shiny\_dashboard and semantic\_dashboard
 
-    -   *app\_type* : minimal (bare minimum app) , standard (defaukt) ,
+    -   *app\_type* : minimal (bare minimum app) , standard (default) ,
         full\_demo (full app with all sweetmods visible)
 
 ## Steps to create a new app
@@ -60,7 +67,8 @@ shinyapp.
     shiny::runApp()
     ```
 
--   Step 4 : Create your custom module for you application with
+-   Step 4 : After testing the basic app launch you can now create your
+    custom module for you application with
     `shinyspring::create_module("my_custom_module")` . Implement the
     module
 
@@ -79,8 +87,6 @@ shinyapp.
 
 -   Why Shinyspring ? What is the value add ?
 
--   Is Shinyspring robust and production ready ?
-
 -   What is the development framework for Shinyspring ?
 
 -   What are current modules available and what are the plans for future
@@ -89,3 +95,5 @@ shinyapp.
 -   How can I build modules that work with shiynspring ?
 
 -   How can I contribute to shinyspring ?
+
+-   Is Shinyspring robust and production ready ?
