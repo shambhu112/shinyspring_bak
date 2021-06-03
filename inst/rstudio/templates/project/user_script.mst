@@ -10,6 +10,9 @@ devtools::install_github("RinteRface/bs4Dash")
 
 # You might have to update shinyspring and sweetmods
 
+remotes::install_github("r-link/corrmorant")
+remotes::install_github("JohnCoene/tippy")
+
 devtools::install_github("shambhu112/shinyspring")
 devtools::install_github("shambhu112/sweetmods")
 
@@ -19,11 +22,9 @@ file.edit('{{config_file}}')
 
 ## Step 3 : Create app.R for your application
 params <- config::get(file = "{{config_file}}") # load params
-shinyspring::create_shinyapp(params = params )
 shinyspring::test_config_file(params)
 
-
-
+shinyspring::create_shinyapp(params = params )
 ## Step 4 : Launch the App
 shiny::runApp()
 
